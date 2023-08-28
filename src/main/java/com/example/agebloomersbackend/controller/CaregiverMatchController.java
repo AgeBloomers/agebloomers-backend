@@ -1,4 +1,4 @@
 package com.example.agebloomersbackend.controller;
 
-public class CaregiversMatchController {
+public class CaregiverMatchController {
 }
