@@ -5,7 +5,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "register_details")
-public class Register_details {
+public class RegisterDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
