@@ -11,14 +11,17 @@ public class RegisterDetails {
     private Long id;
 
     @Temporal(TemporalType.DATE)
+    @Column(name="register_date")
     private Date registerDate;
 
     private String comment;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="start_time")
     private Date startTime;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="end_time")
     private Date endTime;
 
     @ManyToOne
