@@ -11,6 +11,7 @@ public class CaregiverMatch {
     private Long id;
 
     @Temporal(TemporalType.DATE)
+    @Column(name="match_date")
     private Date matchDate;
 
     private String status;
