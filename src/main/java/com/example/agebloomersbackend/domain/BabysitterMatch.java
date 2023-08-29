@@ -3,7 +3,7 @@ package com.example.agebloomersbackend.domain;
 import jakarta.persistence.*;
 import java.util.Date;
 
-@Entity(name="babysitters")
+@Entity(name="babysitters_matches")
 public class BabysitterMatch {
 
     @Id
@@ -11,6 +11,7 @@ public class BabysitterMatch {
     private Long id;
 
     @Temporal(TemporalType.DATE)
+    @Column(name="match_date")
     private Date matchDate;
 
     private String status;
