@@ -2,9 +2,11 @@ package com.example.agebloomersbackend.controller;
 
 import com.example.agebloomersbackend.domain.Babysitters;
 import com.example.agebloomersbackend.domain.Caregivers;
+import com.example.agebloomersbackend.domain.Elders;
 import com.example.agebloomersbackend.domain.Parents;
 import com.example.agebloomersbackend.service.BabysittersService;
 import com.example.agebloomersbackend.service.CaregiversService;
+import com.example.agebloomersbackend.service.EldersService;
 import com.example.agebloomersbackend.service.ParentsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,6 +23,7 @@ public class UserController {
     private BabysittersService babysittersService;
     private ParentsService parentsService;
     private CaregiversService caregiversService;
+    private EldersService eldersService;
 
     @PostMapping("/babysitters")
     public ResponseEntity<Babysitters> createBabysitter(@RequestBody Babysitters babysitters) {
@@ -38,5 +41,11 @@ public class UserController {
     public ResponseEntity<Caregivers> createCaregiver(@RequestBody Caregivers caregivers) {
         Caregivers createdCaregivers = caregiversService.createCaregiver(caregivers);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCaregivers);
+    }
+
+    @PostMapping("/elders")
+    public ResponseEntity<Elders> createElder(@RequestBody Elders elders) {
+        Elders createdElders = eldersService.createElder(elders);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdElders);
     }
 }
