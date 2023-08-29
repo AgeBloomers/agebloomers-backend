@@ -1,7 +1,9 @@
 package com.example.agebloomersbackend.controller;
 
 import com.example.agebloomersbackend.domain.Babysitters;
+import com.example.agebloomersbackend.domain.Parents;
 import com.example.agebloomersbackend.service.BabysittersService;
+import com.example.agebloomersbackend.service.ParentsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class UserController {
     private BabysittersService babysittersService;
+    private ParentsService parentsService;
 
     @PostMapping("/babysitters")
     public ResponseEntity<Babysitters> createBabysitter(@RequestBody Babysitters babysitters) {
@@ -22,4 +25,9 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdBabysitters);
     }
 
+    @PostMapping("/parents")
+    public ResponseEntity<Parents> crerateParent(@RequestBody Parents parents) {
+        Parents createdParents = parentsService.createParent(parents);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdParents);
+    }
 }
