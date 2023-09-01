@@ -1,0 +1,39 @@
+spring:
+  profiles:
+    include: secret
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ENC(/QPWI/R/puvxh4J5JYvWX9I2XQAmtMAln30vkLiAzUrcTBPBR7LBs6usDWUFEoOnsNzLtR8fuHd5kfSXw+eaBXBNiV0sScTiAXI/NSxbF0p4MN8WVOGTxGr2K82T+EZqzk9dMXA7rxg=)
+    username: ENC(N7mGtAFOlSORnzcABj68FQ==)
+    password: ENC(EKN90SPnHSgTV1h/TuS9HoZB68BC1Dm2)
+  jpa:
+    properties:
+      hibernate:
+        format_sql: 'true'
+    show-sql: 'true'
+    hibernate:
+      ddl-auto: update
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  port: 8080
+
+springdoc:
+  version: v1.0.0
+  swagger-ui:
+    path: /swagger-agebloomers.html
+    tagsSorter: alpha
+    operationsSorter: alpha
+
+cors:
+  allowed-origins: http://localhost:3000
+  allowed-methods: GET,POST,PUT,DELETE,OPTIONS
+  allowed-headers: authorization,content-type,x-auth-token
+  max-age: 3600
