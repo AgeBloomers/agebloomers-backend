@@ -29,9 +29,10 @@ server:
 springdoc:
   version: v1.0.0
   swagger-ui:
-    path: /swagger-agebloomers.html
+    path: /
     tagsSorter: alpha
     operationsSorter: alpha
+  show-actuator: true
 
 cors:
   allowed-origins: http://localhost:3000
