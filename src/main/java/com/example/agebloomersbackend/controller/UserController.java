@@ -9,12 +9,12 @@ import com.example.agebloomersbackend.service.CaregiversService;
 import com.example.agebloomersbackend.service.EldersService;
 import com.example.agebloomersbackend.service.ParentsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -25,11 +25,17 @@ public class UserController {
     private CaregiversService caregiversService;
     private EldersService eldersService;
 
+    @Autowired
+    public UserController(BabysittersService babysittersService) {
+        this.babysittersService = babysittersService;
+    }
+
     @PostMapping("/babysitters")
     public ResponseEntity<Babysitters> createBabysitter(@RequestBody Babysitters babysitters) {
         Babysitters createdBabysitters = babysittersService.createBabysitter(babysitters);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdBabysitters);
     }
+
 
     @PostMapping("/parents")
     public ResponseEntity<Parents> createParent(@RequestBody Parents parents) {
@@ -47,5 +53,11 @@ public class UserController {
     public ResponseEntity<Elders> createElder(@RequestBody Elders elders) {
         Elders createdElders = eldersService.createElder(elders);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdElders);
+    }
+
+    @GetMapping("/babysitters")
+    public ResponseEntity<List<Babysitters>> getAllBabysitters() {
+        List<Babysitters> babysittersList = babysittersService.getAllBabysitters();
+        return ResponseEntity.ok(babysittersList);
     }
 }
