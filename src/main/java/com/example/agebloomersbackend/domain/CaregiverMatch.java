@@ -14,19 +14,21 @@ import java.util.Date;
 public class CaregiverMatch {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id", nullable = false)
     private Long id;
 
     @Temporal(TemporalType.DATE)
-    @Column(name="match_date")
+    @Column(name="match_date", nullable = false)
     private Date matchDate;
 
+    @Column(name = "status", nullable = false, length = 255)
     private String status;
 
     @ManyToOne
-    @JoinColumn(name = "elder_id")
+    @JoinColumn(name = "elder_id", nullable = false)
     private Elders elder;
 
     @ManyToOne
-    @JoinColumn(name = "caregiver_id")
+    @JoinColumn(name = "caregiver_id", nullable = false)
     private Caregivers caregiver;
 }
