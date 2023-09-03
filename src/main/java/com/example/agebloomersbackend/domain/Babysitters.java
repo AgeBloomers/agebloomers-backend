@@ -16,25 +16,25 @@ public class Babysitters {
     @Column(name="id", nullable = false)
     private Long id;
 
-    @Column(name="name")
+    @Column(name="name", nullable = false, length = 255)
     private String name;
 
-    @Column(name="age")
+    @Column(name="age", nullable = false)
     private Integer age;
 
-    @Column(name="gender")
+    @Column(name="gender", nullable = false)
     private Character gender;
 
-    @Column(name="address")
+    @Column(name="address", nullable = false, length = 50)
     private String address;
 
-    @Column(name="contact")
+    @Column(name="contact", nullable = false, length = 20)
     private Integer contact;
 
-    @Column(name="email")
+    @Column(name="email", nullable = false, length = 255)
     private String email;
 
-    @Column(name="password")
+    @Column(name="password", nullable = false, length = 255)
     private String password;
 
 
