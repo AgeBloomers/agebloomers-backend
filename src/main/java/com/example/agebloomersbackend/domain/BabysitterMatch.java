@@ -10,7 +10,7 @@ import java.util.Date;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name="babysitters_matches")
+@Table(name="babysitter_matches")
 public class BabysitterMatch {
 
     @Id
