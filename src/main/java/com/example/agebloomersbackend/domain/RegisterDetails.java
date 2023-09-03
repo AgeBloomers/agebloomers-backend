@@ -1,9 +1,15 @@
 package com.example.agebloomersbackend.domain;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 
 @Entity
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "register_details")
 public class RegisterDetails {
     @Id
