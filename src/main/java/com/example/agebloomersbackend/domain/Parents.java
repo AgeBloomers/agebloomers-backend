@@ -28,7 +28,7 @@ public class Parents {
     private String address;
 
     @Column(name = "contact", nullable = false, length = 20)
-    private Integer contact;
+    private String contact;
 
     @Column(name = "email", nullable = false, length = 255)
     private String email;
