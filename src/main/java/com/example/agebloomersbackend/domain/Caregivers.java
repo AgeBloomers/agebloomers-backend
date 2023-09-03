@@ -12,7 +12,7 @@ public class Caregivers {
     private String name;
     private Integer age;
     private Character gender;
-    private Character address;
+    private String address;
     private Integer contact;
     private String email;
     private String password;

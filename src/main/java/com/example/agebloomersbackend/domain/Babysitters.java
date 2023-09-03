@@ -20,7 +20,8 @@ public class Babysitters {
     @Column(name="gender")
     private Character gender;
 
-    private Character address;
+    @Column(name="address")
+    private String address;
 
     @Column(name="contact")
     private Integer contact;
