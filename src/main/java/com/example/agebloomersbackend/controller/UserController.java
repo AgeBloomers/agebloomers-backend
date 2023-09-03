@@ -26,8 +26,11 @@ public class UserController {
     private EldersService eldersService;
 
     @Autowired
-    public UserController(BabysittersService babysittersService) {
+    public UserController(BabysittersService babysittersService, ParentsService parentsService, CaregiversService caregiversService, EldersService eldersService) {
         this.babysittersService = babysittersService;
+        this.parentsService = parentsService;
+        this.caregiversService = caregiversService;
+        this.eldersService = eldersService;
     }
 
     @PostMapping("/babysitters")
@@ -60,4 +63,11 @@ public class UserController {
         List<Babysitters> babysittersList = babysittersService.getAllBabysitters();
         return ResponseEntity.ok(babysittersList);
     }
+
+    @GetMapping("/parents")
+    public ResponseEntity<List<Parents>> getAllParents() {
+        List<Parents> parentsList = parentsService.getAllParents();
+        return ResponseEntity.ok(parentsList);
+    }
+
 }
