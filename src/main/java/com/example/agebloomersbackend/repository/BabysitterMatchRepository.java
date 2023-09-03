@@ -9,4 +9,7 @@ import java.util.List;
 public interface BabysitterMatchRepository extends JpaRepository<BabysitterMatch, Long> {
     @Query("SELECT bm.babysitter.id FROM BabysitterMatch bm")
     List<Long> findAllBabysitterIds();
+
+    @Query("SELECT bm.parent.id FROM BabysitterMatch bm")
+    List<Long> findAllParentIds();
 }
