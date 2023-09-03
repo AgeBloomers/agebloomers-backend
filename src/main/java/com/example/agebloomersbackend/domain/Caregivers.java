@@ -12,26 +12,27 @@ import lombok.NoArgsConstructor;
 public class Caregivers {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id", nullable = false)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "name", nullable = false, length = 255)
     private String name;
 
-    @Column(nullable = false)
+    @Column(name = "age", nullable = false)
     private Integer age;
 
-    @Column(nullable = false)
+    @Column(name = "gender", nullable = false)
     private Character gender;
 
-    @Column(nullable = false, length = 50)
+    @Column(name = "address", nullable = false, length = 50)
     private String address;
 
-    @Column(nullable = false, length = 20)
+    @Column(name = "contact", nullable = false, length = 20)
     private Integer contact;
 
-    @Column(nullable = false)
+    @Column(name = "email", nullable = false, length = 255)
     private String email;
 
-    @Column(nullable = false)
+    @Column(name = "password", nullable = false, length = 255)
     private String password;
 }
