@@ -70,4 +70,9 @@ public class UserController {
         return ResponseEntity.ok(parentsList);
     }
 
+    @GetMapping("/caregivers")
+    public ResponseEntity<List<Caregivers>> getAllCaregivers() {
+        List<Caregivers> caregiversList = caregiversService.getAllCaregivers();
+        return ResponseEntity.ok(caregiversList);
+    }
 }
