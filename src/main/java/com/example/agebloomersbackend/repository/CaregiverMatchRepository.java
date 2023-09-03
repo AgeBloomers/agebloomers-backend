@@ -7,4 +7,7 @@ import java.util.List;
 public interface CaregiverMatchRepository extends JpaRepository<CaregiverMatch, Long> {
     @Query("SELECT bm.caregiver.id FROM CaregiverMatch bm")
     List<Long> findAllCaregiverIds();
+
+    @Query("SELECT bm.elder.id FROM CaregiverMatch bm")
+    List<Long> findAllElderIds();
 }
