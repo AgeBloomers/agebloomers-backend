@@ -15,19 +15,21 @@ public class BabysitterMatch {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name="id", nullable = false)
     private Long id;
 
     @Temporal(TemporalType.DATE)
-    @Column(name="match_date")
+    @Column(name="match_date", nullable = false)
     private Date matchDate;
 
+    @Column(name = "status", nullable = false, length = 255)
     private String status;
 
     @ManyToOne
-    @JoinColumn(name = "parent_id")
+    @JoinColumn(name = "parent_id", nullable = false)
     private Parents parent;
 
     @ManyToOne
-    @JoinColumn(name = "babysitter_id")
+    @JoinColumn(name = "babysitter_id", nullable = false)
     private Babysitters babysitter;
 }
