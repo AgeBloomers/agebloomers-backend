@@ -1,8 +1,13 @@
 package com.example.agebloomersbackend.domain;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "babysitters")
 public class Babysitters {
 
@@ -31,5 +36,7 @@ public class Babysitters {
 
     @Column(name="password")
     private String password;
+
+
 
 }

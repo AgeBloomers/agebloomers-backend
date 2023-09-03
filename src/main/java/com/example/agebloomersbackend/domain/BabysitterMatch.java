@@ -1,9 +1,16 @@
 package com.example.agebloomersbackend.domain;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 
-@Entity(name="babysitters_matches")
+@Entity
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name="babysitters_matches")
 public class BabysitterMatch {
 
     @Id
