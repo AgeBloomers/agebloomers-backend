@@ -75,4 +75,10 @@ public class UserController {
         List<Caregivers> caregiversList = caregiversService.getAllCaregivers();
         return ResponseEntity.ok(caregiversList);
     }
+
+    @GetMapping("/elders")
+    public ResponseEntity<List<Elders>> getAllElders() {
+        List<Elders> eldersList = eldersService.getAllElders();
+        return ResponseEntity.ok(eldersList);
+    }
 }
