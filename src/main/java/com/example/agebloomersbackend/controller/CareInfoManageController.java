@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/careinfo")
+@RequestMapping("/api/careinfo")
 public class CareInfoManageController {
 
     private CareInfoManageService careInfoManageService; // CareInfoManageService는 사람 정보를 다루는 서비스 클래스
@@ -50,7 +50,7 @@ public class CareInfoManageController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdElders);
     }
 
-    @DeleteMapping("/{type}/{id}")
+    @DeleteMapping("/delete/{type}/{id}")
     public List<String> deleteCareInfoByIdAndType(
             @PathVariable Long id,
             @PathVariable String type
