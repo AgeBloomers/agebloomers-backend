@@ -1,12 +1,9 @@
 package com.example.agebloomersbackend.domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Entity
-public class CareInfo {
+public class CareInfoManage {
     @Id
     private String name;
     private Integer age;

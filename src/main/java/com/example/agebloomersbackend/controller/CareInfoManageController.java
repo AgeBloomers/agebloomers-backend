@@ -59,10 +59,10 @@ public class CareInfoManageController {
     public ResponseEntity<String> updateCareInfo(
             @PathVariable Long id,
             @PathVariable String type,
-            @RequestBody CareInfo careInfo
+            @RequestBody CareInfoManage careInfoManage
     ) {
         try {
-            careInfoManageService.updateCareInfo(id, type, careInfo);
+            careInfoManageService.updateCareInfo(id, type, careInfoManage);
             return new ResponseEntity<>("정보 수정 성공", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("정보 수정 오류", HttpStatus.INTERNAL_SERVER_ERROR);
