@@ -23,7 +23,7 @@ public class RegisterDetailsController {
         this.registerDetailsService = registerDetailsService;
     }
 
-    @GetMapping("/{type}/{id}")
+    @GetMapping("/detail/{type}/{id}")
     public List<Object[]> getRegisterDetailsByIdAndType(
             @PathVariable Long id,
             @PathVariable String type
