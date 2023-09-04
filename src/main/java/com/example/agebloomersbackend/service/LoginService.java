@@ -28,12 +28,12 @@ public class LoginService {
 
         Babysitters babysitter = babysittersService.findBabysitterByNameAndPassword(name, password);
         if (babysitter != null) {
-            result = babysitter;
+            result = babysittersService.getBabysitterDetails(babysitter.getId());
         }
 
         Caregivers caregiver = caregiversService.findCaregiverByNameAndPassword(name, password);
         if (caregiver != null) {
-            result = caregiver;
+            result = caregiversService.getCaregiverDetails(caregiver.getId());
         }
 
         Elders elder = eldersService.findElderByNameAndPassword(name, password);
@@ -43,7 +43,7 @@ public class LoginService {
 
         Parents parent = parentsService.findParentByNameAndPassword(name, password);
         if (parent != null) {
-            result = parent;
+            result = parentsService.getParentDetails(parent.getId());
         }
 
         return result;
