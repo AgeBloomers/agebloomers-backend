@@ -75,6 +75,7 @@ public class CareInfoManageService {
                 babysitters.setEmail(careInfoManage.getEmail());
                 babysitters.setPassword(careInfoManage.getPassword());
                 babysittersRepository.save(babysitters);
+                break;
             case "Caregivers":
                 Caregivers caregivers = caregiversRepository.findById(id).orElse(null);
                 caregivers.setName(careInfoManage.getName());
@@ -85,6 +86,7 @@ public class CareInfoManageService {
                 caregivers.setEmail(careInfoManage.getEmail());
                 caregivers.setPassword(careInfoManage.getPassword());
                 caregiversRepository.save(caregivers);
+                break;
             case "Parents":
                 Parents parents = parentsRepository.findById(id).orElse(null);
                 parents.setName(careInfoManage.getName());
@@ -95,6 +97,7 @@ public class CareInfoManageService {
                 parents.setEmail(careInfoManage.getEmail());
                 parents.setPassword(careInfoManage.getPassword());
                 parentsRepository.save(parents);
+                break;
             case "Elders":
                 Elders elders = eldersRepository.findById(id).orElse(null);
                 elders.setName(careInfoManage.getName());
@@ -105,8 +108,10 @@ public class CareInfoManageService {
                 elders.setEmail(careInfoManage.getEmail());
                 elders.setPassword(careInfoManage.getPassword());
                 eldersRepository.save(elders);
+                break;
             default:
                 return List.of();
         }
+        return List.of();
     }
 }
