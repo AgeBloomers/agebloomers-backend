@@ -9,7 +9,6 @@ import java.util.Date;
 
 @Entity
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "caregiver_matches")
 public class CaregiverMatch {
     @Id
@@ -18,10 +17,10 @@ public class CaregiverMatch {
     private Long id;
 
     @Temporal(TemporalType.DATE)
-    @Column(name="match_date", nullable = false)
+    @Column(name="match_date", nullable = false, columnDefinition = "DATE DEFAULT CURRENT_DATE")
     private Date matchDate;
 
-    @Column(name = "status", nullable = false, length = 255)
+    @Column(name = "status", nullable = false, length = 255, columnDefinition = "pending")
     private String status;
 
     @Column(name = "proposer", nullable = false, length = 50)
@@ -34,4 +33,26 @@ public class CaregiverMatch {
     @ManyToOne
     @JoinColumn(name = "caregiver_id", nullable = false)
     private Caregivers caregiver;
+
+    public void setStatus(String status) { this.status = status; }
+    public void setMatchDate(Date matchDate) {
+        this.matchDate = matchDate;
+    }
+    public void setProposer(String proposer) {
+        this.proposer = proposer;
+    }
+
+    public void setElderId(Long elderId) {
+        if (elder == null) {
+            elder = new Elders();
+        }
+        elder.setId(elderId);
+    }
+
+    public void setCaregiverId(Long caregiverId) {
+        if (caregiver == null) {
+            caregiver = new Caregivers();
+        }
+        caregiver.setId(caregiverId);
+    }
 }

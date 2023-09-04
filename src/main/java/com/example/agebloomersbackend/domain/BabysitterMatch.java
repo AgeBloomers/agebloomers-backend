@@ -35,15 +35,14 @@ public class BabysitterMatch {
     @JoinColumn(name = "babysitter_id", nullable = false)
     private Babysitters babysitter;
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+    public void setStatus(String status) { this.status = status; }
     public void setMatchDate(Date matchDate) {
         this.matchDate = matchDate;
     }
     public void setProposer(String proposer) {
         this.proposer = proposer;
     }
+
     public void setBabysitterId(Long babysitterId) {
         if (babysitter == null) {
             babysitter = new Babysitters();

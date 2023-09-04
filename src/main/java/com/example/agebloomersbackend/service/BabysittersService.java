@@ -30,8 +30,11 @@ public class BabysittersService {
         return babysitterMatchRepository.findAllBabysitterIds();
     }
 
-
     public Babysitters createBabysitter(Babysitters babysitters) {
         return babysittersRepository.save(babysitters);
+    }
+
+    public Babysitters findBabysitterByNameAndPassword(String name, String password) {
+        return babysittersRepository.findByNameAndPassword(name, password);
     }
 }
