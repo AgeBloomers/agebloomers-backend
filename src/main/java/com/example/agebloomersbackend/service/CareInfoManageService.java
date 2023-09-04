@@ -85,6 +85,16 @@ public class CareInfoManageService {
                 parents.setEmail(careInfoManage.getEmail());
                 parents.setPassword(careInfoManage.getPassword());
                 parentsRepository.save(parents);
+            case "Elders":
+                Elders elders = eldersRepository.findById(id).orElse(null);
+                elders.setName(careInfoManage.getName());
+                elders.setAge(careInfoManage.getAge());
+                elders.setGender(careInfoManage.getGender());
+                elders.setAddress(careInfoManage.getAddress());
+                elders.setContact(careInfoManage.getContact());
+                elders.setEmail(careInfoManage.getEmail());
+                elders.setPassword(careInfoManage.getPassword());
+                eldersRepository.save(elders);
             default:
                 return List.of();
         }
