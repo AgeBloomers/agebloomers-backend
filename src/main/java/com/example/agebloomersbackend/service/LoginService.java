@@ -38,7 +38,7 @@ public class LoginService {
 
         Elders elder = eldersService.findElderByNameAndPassword(name, password);
         if (elder != null) {
-            result = elder;
+            result = eldersService.getElderDetails(elder.getId());
         }
 
         Parents parent = parentsService.findParentByNameAndPassword(name, password);
