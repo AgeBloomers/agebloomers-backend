@@ -1,9 +1,6 @@
 package com.example.agebloomersbackend.controller;
 
-import com.example.agebloomersbackend.domain.Babysitters;
-import com.example.agebloomersbackend.domain.Caregivers;
-import com.example.agebloomersbackend.domain.Elders;
-import com.example.agebloomersbackend.domain.Parents;
+import com.example.agebloomersbackend.domain.*;
 import com.example.agebloomersbackend.service.CareInfoManageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,4 +55,17 @@ public class CareInfoManageController {
         return careInfoManageService.deleteCareInfoByIdAndType(id, type);
     }
 
+    @PutMapping("/edit/{type}/{id}")
+    public ResponseEntity<String> updateCareInfo(
+            @PathVariable Long id,
+            @PathVariable String type,
+            @RequestBody CareInfoManage careInfoManage
+    ) {
+        try {
+            careInfoManageService.updateCareInfo(id, type, careInfoManage);
+            return new ResponseEntity<>("정보 수정 성공", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("정보 수정 오류", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
