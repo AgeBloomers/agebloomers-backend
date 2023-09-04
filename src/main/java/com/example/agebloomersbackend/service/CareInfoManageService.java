@@ -75,6 +75,16 @@ public class CareInfoManageService {
                 babysitters.setEmail(careInfoManage.getEmail());
                 babysitters.setPassword(careInfoManage.getPassword());
                 babysittersRepository.save(babysitters);
+            case "Caregivers":
+                Caregivers caregivers = caregiversRepository.findById(id).orElse(null);
+                caregivers.setName(careInfoManage.getName());
+                caregivers.setAge(careInfoManage.getAge());
+                caregivers.setGender(careInfoManage.getGender());
+                caregivers.setAddress(careInfoManage.getAddress());
+                caregivers.setContact(careInfoManage.getContact());
+                caregivers.setEmail(careInfoManage.getEmail());
+                caregivers.setPassword(careInfoManage.getPassword());
+                caregiversRepository.save(caregivers);
             case "Parents":
                 Parents parents = parentsRepository.findById(id).orElse(null);
                 parents.setName(careInfoManage.getName());
