@@ -1,5 +1,6 @@
 package com.example.agebloomersbackend.service;
 
+import com.example.agebloomersbackend.domain.Babysitters;
 import com.example.agebloomersbackend.domain.Parents;
 import com.example.agebloomersbackend.repository.BabysitterMatchRepository;
 import com.example.agebloomersbackend.repository.ParentsRepository;
@@ -30,12 +31,13 @@ public class ParentsService {
                 .collect(Collectors.toList());
     }
 
-    public List<Long> getParentsIdsInParentMatch() {
-        // babysitter_matches 테이블의 babysitter_id 컬럼 값을 조회합니다.
-        return babysitterMatchRepository.findAllParentIds();
-    }
+    public List<Long> getParentsIdsInParentMatch() { return babysitterMatchRepository.findAllParentIds(); }
 
     public Parents createParent(Parents parent) {
         return parentsRepository.save(parent);
+    }
+
+    public Parents findParentByNameAndPassword(String name, String password) {
+        return parentsRepository.findByNameAndPassword(name, password);
     }
 }

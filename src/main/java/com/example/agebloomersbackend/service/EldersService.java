@@ -30,12 +30,13 @@ public class EldersService {
                 .collect(Collectors.toList());
     }
 
-    public List<Long> getEldersIdsInElderMatch() {
-        // caregiver_matches 테이블의 caregiver_id 컬럼 값 조회
-        return caregiverMatchRepository.findAllElderIds();
-    }
+    public List<Long> getEldersIdsInElderMatch() { return caregiverMatchRepository.findAllElderIds();}
 
     public Elders createElder(Elders elder) {
         return eldersRepository.save(elder);
+    }
+
+    public Elders findElderByNameAndPassword(String name, String password) {
+        return eldersRepository.findByNameAndPassword(name,password);
     }
 }

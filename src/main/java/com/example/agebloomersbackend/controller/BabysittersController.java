@@ -30,14 +30,4 @@ public class BabysittersController {
         Babysitters createdBabysitters = babysittersService.createBabysitter(babysitters);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdBabysitters);
     }
-
-    @GetMapping("/login")
-    public ResponseEntity<Babysitters> login(@RequestParam String name, @RequestParam String password) {
-        Babysitters babysitter = babysittersService.findBabysitterByNameAndPassword(name, password);
-        if (babysitter != null) {
-            return ResponseEntity.ok(babysitter);
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-    }
 }

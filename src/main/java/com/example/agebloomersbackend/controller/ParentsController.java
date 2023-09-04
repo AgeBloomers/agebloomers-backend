@@ -1,5 +1,6 @@
 package com.example.agebloomersbackend.controller;
 
+import com.example.agebloomersbackend.domain.Babysitters;
 import com.example.agebloomersbackend.domain.Parents;
 import com.example.agebloomersbackend.service.ParentsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +21,16 @@ public class ParentsController {
         this.parentsService = parentsService;
     }
 
+    @GetMapping
+    public ResponseEntity<List<Parents>> getAllParents() {
+        List<Parents> parentsList = parentsService.getAllParents();
+        return ResponseEntity.ok(parentsList);
+    }
+
     @PostMapping
     public ResponseEntity<Parents> createParent(@RequestBody Parents parents) {
         Parents createdParents = parentsService.createParent(parents);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdParents);
     }
 
-    @GetMapping
-    public ResponseEntity<List<Parents>> getAllParents() {
-        List<Parents> parentsList = parentsService.getAllParents();
-        return ResponseEntity.ok(parentsList);
-    }
 }
