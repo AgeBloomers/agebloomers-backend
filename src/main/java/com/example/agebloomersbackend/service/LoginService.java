@@ -27,22 +27,22 @@ public class LoginService {
         Object result = null;
 
         Babysitters babysitter = babysittersService.findBabysitterByNameAndPassword(name, password);
-        if (babysitter != null) {
+        if (babysitter != null && result == null) {
             result = babysittersService.getBabysitterDetails(babysitter.getId());
         }
 
         Caregivers caregiver = caregiversService.findCaregiverByNameAndPassword(name, password);
-        if (caregiver != null) {
+        if (caregiver != null && result == null) {
             result = caregiversService.getCaregiverDetails(caregiver.getId());
         }
 
         Elders elder = eldersService.findElderByNameAndPassword(name, password);
-        if (elder != null) {
+        if (elder != null && result == null) {
             result = eldersService.getElderDetails(elder.getId());
         }
 
         Parents parent = parentsService.findParentByNameAndPassword(name, password);
-        if (parent != null) {
+        if (parent != null && result == null) {
             result = parentsService.getParentDetails(parent.getId());
         }
 
