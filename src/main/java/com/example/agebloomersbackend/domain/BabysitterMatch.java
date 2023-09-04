@@ -25,6 +25,9 @@ public class BabysitterMatch {
     @Column(name = "status", nullable = false, length = 255)
     private String status;
 
+    @Column(name = "proposer", nullable = false, length = 50)
+    private String proposer;
+
     @ManyToOne
     @JoinColumn(name = "parent_id", nullable = false)
     private Parents parent;
