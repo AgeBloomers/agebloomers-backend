@@ -1,13 +1,12 @@
 package com.example.agebloomersbackend.service;
 
-import com.example.agebloomersbackend.domain.Babysitters;
-import com.example.agebloomersbackend.domain.Caregivers;
-import com.example.agebloomersbackend.domain.Elders;
-import com.example.agebloomersbackend.domain.Parents;
+import com.example.agebloomersbackend.domain.*;
 import com.example.agebloomersbackend.repository.*;
+import jakarta.validation.constraints.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -17,7 +16,7 @@ public class CareInfoManageService {
     private ParentsRepository parentsRepository;
     private CaregiversRepository caregiversRepository;
     private EldersRepository eldersRepository;
-//    private CareInfoManageRepository careInfoManageRepository;
+//    private careInfoRepository careInfoRepository;
 
     @Autowired
     public CareInfoManageService(BabysittersRepository babysittersRepository, ParentsRepository parentsRepository,
@@ -26,6 +25,7 @@ public class CareInfoManageService {
         this.parentsRepository = parentsRepository;
         this.caregiversRepository = caregiversRepository;
         this.eldersRepository = eldersRepository;
+//        this.careInfoRepository = careInfoRepository;
     }
 
     // 등록
@@ -60,6 +60,24 @@ public class CareInfoManageService {
             case "Parents":
                 Parents parents = parentsRepository.findById(id).orElse(null);
                 parentsRepository.delete(parents);
+            default:
+                return List.of();
+        }
+    }
+
+    // 수정
+    public List<String> updateCareInfo(Long id, String type, CareInfo careInfo) {
+        switch (type) {
+            case "Parents":
+                Parents parents = parentsRepository.findById(id).orElse(null);
+                parents.setName(careInfo.getName());
+                parents.setAge(careInfo.getAge());
+                parents.setGender(careInfo.getGender());
+                parents.setAddress(careInfo.getAddress());
+                parents.setContact(careInfo.getContact());
+                parents.setEmail(careInfo.getEmail());
+                parents.setPassword(careInfo.getPassword());
+                parentsRepository.save(parents);
             default:
                 return List.of();
         }
