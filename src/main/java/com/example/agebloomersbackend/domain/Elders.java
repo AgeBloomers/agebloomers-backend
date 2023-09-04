@@ -36,4 +36,8 @@ public class Elders {
 
     @Column(name = "password", nullable = false, length = 255)
     private String password;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
