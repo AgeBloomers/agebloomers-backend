@@ -98,11 +98,15 @@ public class CareInfoManageService {
                 newelders.setContact(careInfoManage.getContact());
                 newelders.setEmail(careInfoManage.getEmail());
                 newelders.setPassword(careInfoManage.getPassword());
+                eldersRepository.save(newelders);
+
+                Long elderId = newelders.getId();
+                newEDetails.setParentId(elderId);
                 newEDetails.setRegisterDate(careInfoManage.getRegisterDate());
                 newEDetails.setComment(careInfoManage.getComment());
                 newEDetails.setStartTime(careInfoManage.getStartTime());
                 newEDetails.setEndTime(careInfoManage.getEndTime());
-                eldersRepository.save(newelders);
+                registerDetailsRepository.save(newEDetails);
                 break;
 
             default:
