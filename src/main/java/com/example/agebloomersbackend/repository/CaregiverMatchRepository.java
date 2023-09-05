@@ -1,5 +1,6 @@
 package com.example.agebloomersbackend.repository;
 
+import com.example.agebloomersbackend.domain.BabysitterMatch;
 import com.example.agebloomersbackend.domain.CaregiverMatch;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -20,6 +21,12 @@ public interface CaregiverMatchRepository extends JpaRepository<CaregiverMatch, 
 
     @Query("SELECT cm FROM CaregiverMatch cm WHERE cm.proposer = :type AND cm.elder.id = :registrantId")
     List<CaregiverMatch> findByTypeAndElderId(@Param("type") String type, @Param("registrantId") Long registrantId);
+
+    @Query("SELECT cm FROM BabysitterMatch cm WHERE cm.proposer = :type AND cm.babysitter.id = :registrantId")
+    List<BabysitterMatch> findByTypeAndBabysitterId(String type, Long registrantId);
+
+    @Query("SELECT cm FROM BabysitterMatch cm WHERE cm.proposer = :type AND cm.parent.id = :registrantId")
+    List<BabysitterMatch> findByTypeAndParentId(@Param("type") String type, @Param("registrantId") Long registrantId);
 
 
 }

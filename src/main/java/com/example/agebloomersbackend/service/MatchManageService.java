@@ -51,6 +51,34 @@ public class MatchManageService {
                     }
                 }
                 break;
+            case "Babysitters":
+                List<BabysitterMatch> Bmatches = caregiverMatchRepository.findByTypeAndBabysitterId(type, registrantId);
+
+                if (!Bmatches.isEmpty()) {
+                    for (BabysitterMatch match : Bmatches) {
+                        if (status) {
+                            match.setStatus("Completed");
+                            babysitterMatchRepository.save(match);
+                        } else{
+                            babysitterMatchRepository.delete(match);
+                        }
+                    }
+                }
+                break;
+            case "Parents":
+                List<BabysitterMatch> Pmatches = caregiverMatchRepository.findByTypeAndParentId(type, registrantId);
+
+                if (!Pmatches.isEmpty()) {
+                    for (BabysitterMatch match : Pmatches) {
+                        if (status) {
+                            match.setStatus("Completed");
+                            babysitterMatchRepository.save(match);
+                        } else{
+                            babysitterMatchRepository.delete(match);
+                        }
+                    }
+                }
+                break;
             default:
                 return List.of();
         }
