@@ -16,4 +16,12 @@ public interface BabysitterMatchRepository extends JpaRepository<BabysitterMatch
 
     @Query("SELECT bm.babysitter.id FROM BabysitterMatch bm WHERE bm.parent.id = :parentId")
     Long findBabysitterIdsByParentId(@Param("parentId") Long parentId);
+
+    // 매칭 상태 수정 관련
+    // type 값이 있는 레코드 중 registrant_id를 가진 레코드 찾기
+    @Query("SELECT bm FROM BabysitterMatch bm WHERE bm.proposer = :type AND bm.babysitter.id = :registrantId")
+    List<BabysitterMatch> findByTypeAndBabysitterId(String type, Long registrantId);
+
+    @Query("SELECT bm FROM BabysitterMatch bm WHERE bm.proposer = :type AND bm.parent.id = :registrantId")
+    List<BabysitterMatch> findByTypeAndParentId(String type, Long registrantId);
 }

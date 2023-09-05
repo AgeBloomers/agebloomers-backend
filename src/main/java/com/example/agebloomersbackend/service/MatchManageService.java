@@ -52,7 +52,7 @@ public class MatchManageService {
                 }
                 break;
             case "Babysitters":
-                List<BabysitterMatch> Bmatches = caregiverMatchRepository.findByTypeAndBabysitterId(type, registrantId);
+                List<BabysitterMatch> Bmatches = babysitterMatchRepository.findByTypeAndBabysitterId(type, registrantId);
 
                 if (!Bmatches.isEmpty()) {
                     for (BabysitterMatch match : Bmatches) {
@@ -66,7 +66,7 @@ public class MatchManageService {
                 }
                 break;
             case "Parents":
-                List<BabysitterMatch> Pmatches = caregiverMatchRepository.findByTypeAndParentId(type, registrantId);
+                List<BabysitterMatch> Pmatches = babysitterMatchRepository.findByTypeAndParentId(type, registrantId);
 
                 if (!Pmatches.isEmpty()) {
                     for (BabysitterMatch match : Pmatches) {

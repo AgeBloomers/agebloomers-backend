@@ -20,13 +20,6 @@ public interface CaregiverMatchRepository extends JpaRepository<CaregiverMatch, 
     List<CaregiverMatch> findByTypeAndCaregiverId(String type, Long registrantId);
 
     @Query("SELECT cm FROM CaregiverMatch cm WHERE cm.proposer = :type AND cm.elder.id = :registrantId")
-    List<CaregiverMatch> findByTypeAndElderId(@Param("type") String type, @Param("registrantId") Long registrantId);
-
-    @Query("SELECT cm FROM BabysitterMatch cm WHERE cm.proposer = :type AND cm.babysitter.id = :registrantId")
-    List<BabysitterMatch> findByTypeAndBabysitterId(String type, Long registrantId);
-
-    @Query("SELECT cm FROM BabysitterMatch cm WHERE cm.proposer = :type AND cm.parent.id = :registrantId")
-    List<BabysitterMatch> findByTypeAndParentId(@Param("type") String type, @Param("registrantId") Long registrantId);
-
+    List<CaregiverMatch> findByTypeAndElderId(String type, Long registrantId);
 
 }
