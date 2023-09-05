@@ -50,22 +50,6 @@ public class CareInfoManage {
     @Column(name = "end_time", nullable = false)
     private Date endTime;
 
-//    @ManyToOne
-//    @JoinColumn(name = "parent_id", nullable = true)
-//    private Parents parent;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "babysitter_id", nullable = true)
-//    private Babysitters babysitter;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "elder_id", nullable = true)
-//    private Elders elder;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "caregiver_id", nullable = true)
-//    private Caregivers caregiver;
-
     public String getName() {
         return name;
     }
@@ -87,9 +71,5 @@ public class CareInfoManage {
     public String getPassword() {
         return password;
     }
-    public Date getRegister_date() {return registerDate;}
     public String getComment() {return comment;}
-    public Date getStart_time() {return startTime;}
-    public Date getEnd_time() {return endTime;}
-
 }

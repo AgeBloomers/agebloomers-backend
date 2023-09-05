@@ -43,11 +43,15 @@ public class CareInfoManageService {
                 newbabysitters.setContact(careInfoManage.getContact());
                 newbabysitters.setEmail(careInfoManage.getEmail());
                 newbabysitters.setPassword(careInfoManage.getPassword());
+                babysittersRepository.save(newbabysitters);
+
+                Long babysitterId = newbabysitters.getId();
+                newBDetails.setBabysitterId(babysitterId);
                 newBDetails.setRegisterDate(careInfoManage.getRegisterDate());
                 newBDetails.setComment(careInfoManage.getComment());
                 newBDetails.setStartTime(careInfoManage.getStartTime());
                 newBDetails.setEndTime(careInfoManage.getEndTime());
-                babysittersRepository.save(newbabysitters);
+                registerDetailsRepository.save(newBDetails);
                 break;
 
             case "Caregivers":
@@ -60,11 +64,15 @@ public class CareInfoManageService {
                 newcaregivers.setContact(careInfoManage.getContact());
                 newcaregivers.setEmail(careInfoManage.getEmail());
                 newcaregivers.setPassword(careInfoManage.getPassword());
+                caregiversRepository.save(newcaregivers);
+
+                Long caregiverId = newcaregivers.getId();
+                newCDetails.setCaregiverId(caregiverId);
                 newCDetails.setRegisterDate(careInfoManage.getRegisterDate());
                 newCDetails.setComment(careInfoManage.getComment());
                 newCDetails.setStartTime(careInfoManage.getStartTime());
                 newCDetails.setEndTime(careInfoManage.getEndTime());
-                caregiversRepository.save(newcaregivers);
+                registerDetailsRepository.save(newCDetails);
                 break;
 
             case "Parents":
@@ -101,7 +109,7 @@ public class CareInfoManageService {
                 eldersRepository.save(newelders);
 
                 Long elderId = newelders.getId();
-                newEDetails.setParentId(elderId);
+                newEDetails.setElderId(elderId);
                 newEDetails.setRegisterDate(careInfoManage.getRegisterDate());
                 newEDetails.setComment(careInfoManage.getComment());
                 newEDetails.setStartTime(careInfoManage.getStartTime());
