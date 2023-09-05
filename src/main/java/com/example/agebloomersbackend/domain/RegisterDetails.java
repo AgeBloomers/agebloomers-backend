@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Entity
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Table(name = "register_details")
 public class RegisterDetails {
     @Id
@@ -47,4 +47,39 @@ public class RegisterDetails {
     @ManyToOne
     @JoinColumn(name = "caregiver_id", nullable = true)
     private Caregivers caregiver;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public void setRegisterDate(Date registerDate) {this.registerDate = registerDate;}
+    public void setComment(String comment) {this.comment = comment;}
+    public void setStartTime(Date startTime) {this.startTime = startTime;}
+    public void setEndTime(Date endTime) {this.endTime = endTime;}
+    public void setBabysitterId(Long babysitterId) {
+        if (babysitter == null) {
+            babysitter = new Babysitters();
+        }
+        babysitter.setId(babysitterId);
+    }
+
+    public void setParentId(Long parentId) {
+        if (parent == null) {
+            parent = new Parents();
+        }
+        parent.setId(parentId);
+    }
+    public void setElderId(Long elderId) {
+        if (elder == null) {
+            elder = new Elders();
+        }
+        elder.setId(elderId);
+    }
+
+    public void setCaregiverId(Long caregiverId) {
+        if (caregiver == null) {
+            caregiver = new Caregivers();
+        }
+        caregiver.setId(caregiverId);
+    }
+
 }

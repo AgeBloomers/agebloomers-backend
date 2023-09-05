@@ -22,6 +22,7 @@ public class CareInfoManageController {
         this.careInfoManageService = careInfoManageService;
     }
 
+    // 등록
     @PostMapping("/upload/{type}")
     public ResponseEntity<String> updateCareInfo(
             @PathVariable String type,
@@ -35,6 +36,7 @@ public class CareInfoManageController {
         }
     }
 
+    // 삭제
     @DeleteMapping("/delete/{type}/{id}")
     public List<String> deleteCareInfoByIdAndType(
             @PathVariable Long id,
@@ -43,6 +45,7 @@ public class CareInfoManageController {
         return careInfoManageService.deleteCareInfoByIdAndType(id, type);
     }
 
+    // 수정
     @PutMapping("/edit/{type}/{id}")
     public ResponseEntity<String> updateCareInfo(
             @PathVariable Long id,

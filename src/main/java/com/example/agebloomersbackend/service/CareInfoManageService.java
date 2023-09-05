@@ -15,15 +15,18 @@ public class CareInfoManageService {
     private ParentsRepository parentsRepository;
     private CaregiversRepository caregiversRepository;
     private EldersRepository eldersRepository;
+    private RegisterDetailsRepository registerDetailsRepository;
 //    private careInfoRepository careInfoRepository;
 
     @Autowired
     public CareInfoManageService(BabysittersRepository babysittersRepository, ParentsRepository parentsRepository,
-                                 CaregiversRepository caregiversRepository, EldersRepository eldersRepository) {
+                                 CaregiversRepository caregiversRepository, EldersRepository eldersRepository,
+                                 RegisterDetailsRepository registerDetailsRepository) {
         this.babysittersRepository = babysittersRepository;
         this.parentsRepository = parentsRepository;
         this.caregiversRepository = caregiversRepository;
         this.eldersRepository = eldersRepository;
+        this.registerDetailsRepository = registerDetailsRepository;
 //        this.careInfoRepository = careInfoRepository;
     }
 
@@ -32,6 +35,7 @@ public class CareInfoManageService {
         switch (type) {
             case "Babysitters":
                 Babysitters newbabysitters = new Babysitters();
+                RegisterDetails newBDetails = new RegisterDetails();
                 newbabysitters.setName(careInfoManage.getName());
                 newbabysitters.setAge(careInfoManage.getAge());
                 newbabysitters.setGender(careInfoManage.getGender());
@@ -39,10 +43,16 @@ public class CareInfoManageService {
                 newbabysitters.setContact(careInfoManage.getContact());
                 newbabysitters.setEmail(careInfoManage.getEmail());
                 newbabysitters.setPassword(careInfoManage.getPassword());
+                newBDetails.setRegisterDate(careInfoManage.getRegisterDate());
+                newBDetails.setComment(careInfoManage.getComment());
+                newBDetails.setStartTime(careInfoManage.getStartTime());
+                newBDetails.setEndTime(careInfoManage.getEndTime());
                 babysittersRepository.save(newbabysitters);
                 break;
+
             case "Caregivers":
                 Caregivers newcaregivers = new Caregivers();
+                RegisterDetails newCDetails = new RegisterDetails();
                 newcaregivers.setName(careInfoManage.getName());
                 newcaregivers.setAge(careInfoManage.getAge());
                 newcaregivers.setGender(careInfoManage.getGender());
@@ -50,10 +60,16 @@ public class CareInfoManageService {
                 newcaregivers.setContact(careInfoManage.getContact());
                 newcaregivers.setEmail(careInfoManage.getEmail());
                 newcaregivers.setPassword(careInfoManage.getPassword());
+                newCDetails.setRegisterDate(careInfoManage.getRegisterDate());
+                newCDetails.setComment(careInfoManage.getComment());
+                newCDetails.setStartTime(careInfoManage.getStartTime());
+                newCDetails.setEndTime(careInfoManage.getEndTime());
                 caregiversRepository.save(newcaregivers);
                 break;
+
             case "Parents":
                 Parents newparents = new Parents();
+                RegisterDetails newPDetails = new RegisterDetails();
                 newparents.setName(careInfoManage.getName());
                 newparents.setAge(careInfoManage.getAge());
                 newparents.setGender(careInfoManage.getGender());
@@ -62,9 +78,19 @@ public class CareInfoManageService {
                 newparents.setEmail(careInfoManage.getEmail());
                 newparents.setPassword(careInfoManage.getPassword());
                 parentsRepository.save(newparents);
+
+                Long parentId = newparents.getId();
+                newPDetails.setParentId(parentId);
+                newPDetails.setRegisterDate(careInfoManage.getRegisterDate());
+                newPDetails.setComment(careInfoManage.getComment());
+                newPDetails.setStartTime(careInfoManage.getStartTime());
+                newPDetails.setEndTime(careInfoManage.getEndTime());
+                registerDetailsRepository.save(newPDetails);
                 break;
+
             case "Elders":
                 Elders newelders = new Elders();
+                RegisterDetails newEDetails = new RegisterDetails();
                 newelders.setName(careInfoManage.getName());
                 newelders.setAge(careInfoManage.getAge());
                 newelders.setGender(careInfoManage.getGender());
@@ -72,8 +98,13 @@ public class CareInfoManageService {
                 newelders.setContact(careInfoManage.getContact());
                 newelders.setEmail(careInfoManage.getEmail());
                 newelders.setPassword(careInfoManage.getPassword());
+                newEDetails.setRegisterDate(careInfoManage.getRegisterDate());
+                newEDetails.setComment(careInfoManage.getComment());
+                newEDetails.setStartTime(careInfoManage.getStartTime());
+                newEDetails.setEndTime(careInfoManage.getEndTime());
                 eldersRepository.save(newelders);
                 break;
+
             default:
                 return List.of();
         }
