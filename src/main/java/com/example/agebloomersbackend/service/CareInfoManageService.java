@@ -2,7 +2,9 @@ package com.example.agebloomersbackend.service;
 
 import com.example.agebloomersbackend.domain.*;
 import com.example.agebloomersbackend.repository.*;
+import jakarta.validation.constraints.Null;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,20 +28,56 @@ public class CareInfoManageService {
     }
 
     // 등록
-    public Babysitters createBabysitter(Babysitters babysitters) {
-        return babysittersRepository.save(babysitters);
-    }
-
-    public Caregivers createCaregiver(Caregivers caregiver) {
-        return caregiversRepository.save(caregiver);
-    }
-
-    public Elders createElder(Elders elder) {
-        return eldersRepository.save(elder);
-    }
-
-    public Parents createParent(Parents parent) {
-        return parentsRepository.save(parent);
+    public List<String> uploadCareInfo(String type, CareInfoManage careInfoManage) {
+        switch (type) {
+            case "Babysitters":
+                Babysitters newbabysitters = new Babysitters();
+                newbabysitters.setName(careInfoManage.getName());
+                newbabysitters.setAge(careInfoManage.getAge());
+                newbabysitters.setGender(careInfoManage.getGender());
+                newbabysitters.setAddress(careInfoManage.getAddress());
+                newbabysitters.setContact(careInfoManage.getContact());
+                newbabysitters.setEmail(careInfoManage.getEmail());
+                newbabysitters.setPassword(careInfoManage.getPassword());
+                babysittersRepository.save(newbabysitters);
+                break;
+            case "Caregivers":
+                Caregivers newcaregivers = new Caregivers();
+                newcaregivers.setName(careInfoManage.getName());
+                newcaregivers.setAge(careInfoManage.getAge());
+                newcaregivers.setGender(careInfoManage.getGender());
+                newcaregivers.setAddress(careInfoManage.getAddress());
+                newcaregivers.setContact(careInfoManage.getContact());
+                newcaregivers.setEmail(careInfoManage.getEmail());
+                newcaregivers.setPassword(careInfoManage.getPassword());
+                caregiversRepository.save(newcaregivers);
+                break;
+            case "Parents":
+                Parents newparents = new Parents();
+                newparents.setName(careInfoManage.getName());
+                newparents.setAge(careInfoManage.getAge());
+                newparents.setGender(careInfoManage.getGender());
+                newparents.setAddress(careInfoManage.getAddress());
+                newparents.setContact(careInfoManage.getContact());
+                newparents.setEmail(careInfoManage.getEmail());
+                newparents.setPassword(careInfoManage.getPassword());
+                parentsRepository.save(newparents);
+                break;
+            case "Elders":
+                Elders newelders = new Elders();
+                newelders.setName(careInfoManage.getName());
+                newelders.setAge(careInfoManage.getAge());
+                newelders.setGender(careInfoManage.getGender());
+                newelders.setAddress(careInfoManage.getAddress());
+                newelders.setContact(careInfoManage.getContact());
+                newelders.setEmail(careInfoManage.getEmail());
+                newelders.setPassword(careInfoManage.getPassword());
+                eldersRepository.save(newelders);
+                break;
+            default:
+                return List.of();
+        }
+        return List.of();
     }
 
     // 삭제

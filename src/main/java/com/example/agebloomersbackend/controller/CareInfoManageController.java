@@ -22,29 +22,17 @@ public class CareInfoManageController {
         this.careInfoManageService = careInfoManageService;
     }
 
-    @PostMapping("/babysitters")
-    public ResponseEntity<Babysitters> createBabysitter(@RequestBody Babysitters babysitters) {
-        Babysitters createdBabysitters = careInfoManageService.createBabysitter(babysitters);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdBabysitters);
-    }
-
-
-    @PostMapping("/parents")
-    public ResponseEntity<Parents> createParent(@RequestBody Parents parents) {
-        Parents createdParents = careInfoManageService.createParent(parents);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdParents);
-    }
-
-    @PostMapping("/caregivers")
-    public ResponseEntity<Caregivers> createCaregiver(@RequestBody Caregivers caregivers) {
-        Caregivers createdCaregivers = careInfoManageService.createCaregiver(caregivers);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdCaregivers);
-    }
-
-    @PostMapping("/elders")
-    public ResponseEntity<Elders> createElder(@RequestBody Elders elders) {
-        Elders createdElders = careInfoManageService.createElder(elders);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdElders);
+    @PostMapping("/upload/{type}")
+    public ResponseEntity<String> updateCareInfo(
+            @PathVariable String type,
+            @RequestBody CareInfoManage careInfoManage
+    ) {
+        try {
+            careInfoManageService.uploadCareInfo(type, careInfoManage);
+            return new ResponseEntity<>("정보 등록 성공", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("정보 등록 오류", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @DeleteMapping("/delete/{type}/{id}")
