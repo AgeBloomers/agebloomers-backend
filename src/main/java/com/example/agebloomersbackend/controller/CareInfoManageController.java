@@ -22,31 +22,21 @@ public class CareInfoManageController {
         this.careInfoManageService = careInfoManageService;
     }
 
-    @PostMapping("/babysitters")
-    public ResponseEntity<Babysitters> createBabysitter(@RequestBody Babysitters babysitters) {
-        Babysitters createdBabysitters = careInfoManageService.createBabysitter(babysitters);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdBabysitters);
+    // 등록
+    @PostMapping("/upload/{type}")
+    public ResponseEntity<String> updateCareInfo(
+            @PathVariable String type,
+            @RequestBody CareInfoManage careInfoManage
+    ) {
+        try {
+            careInfoManageService.uploadCareInfo(type, careInfoManage);
+            return new ResponseEntity<>("정보 등록 성공", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("정보 등록 오류", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
-
-    @PostMapping("/parents")
-    public ResponseEntity<Parents> createParent(@RequestBody Parents parents) {
-        Parents createdParents = careInfoManageService.createParent(parents);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdParents);
-    }
-
-    @PostMapping("/caregivers")
-    public ResponseEntity<Caregivers> createCaregiver(@RequestBody Caregivers caregivers) {
-        Caregivers createdCaregivers = careInfoManageService.createCaregiver(caregivers);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdCaregivers);
-    }
-
-    @PostMapping("/elders")
-    public ResponseEntity<Elders> createElder(@RequestBody Elders elders) {
-        Elders createdElders = careInfoManageService.createElder(elders);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdElders);
-    }
-
+    // 삭제
     @DeleteMapping("/delete/{type}/{id}")
     public List<String> deleteCareInfoByIdAndType(
             @PathVariable Long id,
@@ -55,6 +45,7 @@ public class CareInfoManageController {
         return careInfoManageService.deleteCareInfoByIdAndType(id, type);
     }
 
+    // 수정
     @PutMapping("/edit/{type}/{id}")
     public ResponseEntity<String> updateCareInfo(
             @PathVariable Long id,

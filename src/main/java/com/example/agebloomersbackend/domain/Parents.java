@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Table(name = "parents")
 public class Parents {
     @Id
@@ -15,25 +15,25 @@ public class Parents {
     @Column(name="id", nullable = false)
     private Long id;
 
-    @Column(name = "name", nullable = false, length = 255)
+    @Column(name="name", nullable = false, length = 255)
     private String name;
 
-    @Column(name = "age", nullable = false)
+    @Column(name="age", nullable = false)
     private Integer age;
 
-    @Column(name = "gender", nullable = false)
+    @Column(name="gender", nullable = false)
     private Character gender;
 
-    @Column(name = "address", nullable = false, length = 50)
+    @Column(name="address", nullable = false, length = 50)
     private String address;
 
-    @Column(name = "contact", nullable = false, length = 20)
+    @Column(name="contact", nullable = false, length = 20)
     private String contact;
 
-    @Column(name = "email", nullable = false, length = 255)
+    @Column(name="email", nullable = false, length = 255)
     private String email;
 
-    @Column(name = "password", nullable = false, length = 255)
+    @Column(name="password", nullable = false, length = 255)
     private String password;
 
     public void setId(Long id) {
