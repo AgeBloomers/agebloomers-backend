@@ -17,7 +17,7 @@ public class LoginController {
         this.loginService = loginService;
     }
 
-    @PostMapping("/login")
+    @PostMapping("/login/{name}")
     public ResponseEntity<Object> login(@RequestParam String name,
                                         @RequestParam String password) {
         Object user = loginService.login(name, password);
