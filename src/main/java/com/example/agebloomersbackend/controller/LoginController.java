@@ -18,9 +18,9 @@ public class LoginController {
         this.loginService = loginService;
     }
 
-    @PostMapping("/login/{name}")
+    @PostMapping("/login/{name}/{password}")
     public ResponseEntity<Object> login(@PathVariable String name,
-                                        @RequestParam String password) {
+                                        @PathVariable String password) {
         Object user = loginService.login(name, password);
         if (user != null) {
             return ResponseEntity.ok(user);
