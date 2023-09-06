@@ -3,6 +3,7 @@ package com.example.agebloomersbackend.controller;
         import com.example.agebloomersbackend.domain.*;
         import com.example.agebloomersbackend.service.CareInfoManageService;
         import com.example.agebloomersbackend.service.MatchManageService;
+        import io.swagger.v3.oas.annotations.Operation;
         import lombok.RequiredArgsConstructor;
         import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.http.HttpStatus;
@@ -24,6 +25,7 @@ public class MatchManageController {
     }
 
     @PutMapping("/matchStatus/{type}/{registrant_id}/{status}")
+    @Operation(summary = "매칭 상태 수정 API")
     public ResponseEntity<String> updateBMatchStatus(
             @PathVariable Long registrant_id,
             @PathVariable String type,

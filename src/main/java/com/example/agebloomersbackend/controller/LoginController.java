@@ -1,6 +1,7 @@
 package com.example.agebloomersbackend.controller;
 
 import com.example.agebloomersbackend.service.LoginService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ public class LoginController {
     }
 
     @PostMapping("/login/{name}/{password}")
+    @Operation(summary = "로그인 및 마이페이지 조회 API")
     public ResponseEntity<Object> login(@PathVariable String name,
                                         @PathVariable String password) {
 

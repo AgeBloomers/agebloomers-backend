@@ -2,6 +2,7 @@ package com.example.agebloomersbackend.controller;
 
 import com.example.agebloomersbackend.domain.CaregiverMatch;
 import com.example.agebloomersbackend.service.CaregiverMatchService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,7 @@ public class CaregiverMatchController {
     }
 
     @PostMapping("/caregiver_match")
+    @Operation(summary = "요양보호사-노인 매칭 신청 API")
     public ResponseEntity<CaregiverMatch> createCaregiverMatch(
             @RequestParam String proposer,
             @RequestParam Long caregiverId,

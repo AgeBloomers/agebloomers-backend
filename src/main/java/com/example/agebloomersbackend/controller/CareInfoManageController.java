@@ -2,6 +2,7 @@ package com.example.agebloomersbackend.controller;
 
 import com.example.agebloomersbackend.domain.*;
 import com.example.agebloomersbackend.service.CareInfoManageService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,7 @@ public class CareInfoManageController {
 
     // 등록
     @PostMapping("/upload/{type}")
+    @Operation(summary = "자신 정보 등록 API")
     public ResponseEntity<String> updateCareInfo(
             @PathVariable String type,
             @RequestBody CareInfoManage careInfoManage
@@ -38,6 +40,7 @@ public class CareInfoManageController {
 
     // 삭제
     @DeleteMapping("/delete/{type}/{id}")
+    @Operation(summary = "자신 정보 삭제 API")
     public List<String> deleteCareInfoByIdAndType(
             @PathVariable Long id,
             @PathVariable String type
@@ -47,6 +50,7 @@ public class CareInfoManageController {
 
     // 수정
     @PutMapping("/edit/{type}/{id}")
+    @Operation(summary = "자신 정보 수정 조회 API")
     public ResponseEntity<String> updateCareInfo(
             @PathVariable Long id,
             @PathVariable String type,

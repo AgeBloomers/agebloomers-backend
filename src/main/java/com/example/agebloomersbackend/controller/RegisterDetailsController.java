@@ -2,6 +2,7 @@ package com.example.agebloomersbackend.controller;
 
 import com.example.agebloomersbackend.domain.RegisterDetails;
 import com.example.agebloomersbackend.service.RegisterDetailsService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,7 @@ public class RegisterDetailsController {
     }
 
     @GetMapping("/detail/{type}/{id}")
+    @Operation(summary = "특정 인물 정보 조회 API")
     public List<Object[]> getRegisterDetailsByIdAndType(
             @PathVariable Long id,
             @PathVariable String type
