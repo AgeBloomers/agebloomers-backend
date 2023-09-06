@@ -55,32 +55,31 @@ public class BabysittersService {
 
         List<Object[]> registerDetails_babysitters = registerDetailsRepository.findByBabysitterId(babysitterId);
 
-        Map<String, Object> selfResult = new HashMap<>();
-        selfResult.put("babysitters", babysitters);
-        selfResult.put("registerDetails_babysitters", registerDetails_babysitters);
+        Map<String, Object> result = new HashMap<>();
+        result.put("babysitters", babysitters);
+        result.put("registerDetails_babysitters", registerDetails_babysitters);
         System.out.println(babysitterId);
-        System.out.println(selfResult);
+        System.out.println(result);
 
         // 매칭된 상대방 찾기
         Long parentId = babysitterMatchRepository.findParentIdsByBabysitterId(babysitterId);
 
-        // 상대방
-        Parents parents = parentsRepository.findById(parentId).orElse(null);
-        if (parentId == null) return null;
+        if (parentId != null) {
+            // 상대방
+            Parents parents = parentsRepository.findById(parentId).orElse(null);
+            if (parentId == null) return null;
 
-        List<Object[]> registerDetails_parents = registerDetailsRepository.findByParentId(parentId);
+            List<Object[]> registerDetails_parents = registerDetailsRepository.findByParentId(parentId);
 
-        Map<String, Object> othersResult = new HashMap<>();
-        othersResult.put("parents", parents);
-        othersResult.put("registerDetails_parents", registerDetails_parents);
-        System.out.println(parentId);
-        System.out.println(othersResult);
+            Map<String, Object> othersResult = new HashMap<>();
+            othersResult.put("parents", parents);
+            othersResult.put("registerDetails_parents", registerDetails_parents);
+            System.out.println(parentId);
 
-        // selfResult와 othersResult 합침
-        Map<String, Object> result = new HashMap<>();
-        result.putAll(selfResult);
-        result.putAll(othersResult);
+            // selfResult와 othersResult 합침
+            result.putAll(othersResult);
 
+        }
 
         return result;
     }

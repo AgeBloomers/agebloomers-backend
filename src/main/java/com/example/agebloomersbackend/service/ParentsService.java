@@ -57,27 +57,29 @@ public class ParentsService {
 
         List<Object[]> registerDetails_parents = registerDetailsRepository.findByParentId(parentId);
 
-        Map<String, Object> selfResult = new HashMap<>();
-        selfResult.put("parents", parents);
-        selfResult.put("registerDetails_parents", registerDetails_parents);
+        Map<String, Object> result = new HashMap<>();
+        result.put("parents", parents);
+        result.put("registerDetails_parents", registerDetails_parents);
+        System.out.println(parentId);
+        System.out.println(result);
 
         // 매칭된 상대방 찾기
         Long babysitterId = babysitterMatchRepository.findBabysitterIdsByParentId(parentId);
 
-        // 상대방
-        Babysitters babysitters = babysittersRepository.findById(babysitterId).orElse(null);
-        if (babysitters == null) return null;
+        if (parentId != null) {
+            // 상대방
+            Babysitters babysitters = babysittersRepository.findById(babysitterId).orElse(null);
+            if (babysitters == null) return null;
 
-        List<Object[]> registerDetails_babysitters = registerDetailsRepository.findByBabysitterId(babysitterId);
+            List<Object[]> registerDetails_babysitters = registerDetailsRepository.findByBabysitterId(babysitterId);
 
-        Map<String, Object> othersResult = new HashMap<>();
-        othersResult.put("babysitters", babysitters);
-        othersResult.put("registerDetails_babysitters", registerDetails_babysitters);
+            Map<String, Object> othersResult = new HashMap<>();
+            othersResult.put("babysitters", babysitters);
+            othersResult.put("registerDetails_babysitters", registerDetails_babysitters);
 
-        // selfResult와 othersResult 합침
-        Map<String, Object> result = new HashMap<>();
-        result.putAll(selfResult);
-        result.putAll(othersResult);
+            // selfResult와 othersResult 합침
+            result.putAll(othersResult);
+        }
 
         return result;
     }
