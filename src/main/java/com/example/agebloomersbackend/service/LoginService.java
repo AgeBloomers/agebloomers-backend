@@ -24,44 +24,50 @@ public class LoginService {
     }
 
     public Object login(String name, String password) {
-        Object result = null;
+        try {
+            Object result = null;
 
-        System.out.println("name : " + name + ", ps : " + password);
+            System.out.println("name : " + name + ", ps : " + password);
 
-        Babysitters babysitter = babysittersService.findBabysitterByNameAndPassword(name, password);
-        if (babysitter != null && result == null) {
-            result = babysittersService.getBabysitterDetails(babysitter.getId());
-            System.out.println("babysitter called");
+            Babysitters babysitter = babysittersService.findBabysitterByNameAndPassword(name, password);
+            if (babysitter != null && result == null) {
+                result = babysittersService.getBabysitterDetails(babysitter.getId());
+                System.out.println("babysitter called");
+            }
+            System.out.println("베이비시터 result~");
+            System.out.println(result);
+
+            Caregivers caregiver = caregiversService.findCaregiverByNameAndPassword(name, password);
+            if (caregiver != null && result == null) {
+                result = caregiversService.getCaregiverDetails(caregiver.getId());
+                System.out.println("cargiver called");
+            }
+            System.out.println("케어기버 result~");
+            System.out.println(result);
+
+            Elders elder = eldersService.findElderByNameAndPassword(name, password);
+            if (elder != null && result == null) {
+                result = eldersService.getElderDetails(elder.getId());
+                System.out.println("elder called");
+            }
+            System.out.println("노인 result~");
+            System.out.println(result);
+
+            Parents parent = parentsService.findParentByNameAndPassword(name, password);
+            if (parent != null && result == null) {
+                result = parentsService.getParentDetails(parent.getId());
+                System.out.println("parent called");
+            }
+            System.out.println("부모 result~");
+            System.out.println(result);
+
+            System.out.println("total result~");
+            System.out.println(result);
+            return result;
+        } catch (Exception e) {
+            // 예외 발생 시 로그 출력
+            e.printStackTrace();
+            throw e; // 예외를 다시 던져서 처리되지 않은 예외로 전달
         }
-        System.out.println("베이비시터 result~");
-        System.out.println(result);
-
-        Caregivers caregiver = caregiversService.findCaregiverByNameAndPassword(name, password);
-        if (caregiver != null && result == null) {
-            result = caregiversService.getCaregiverDetails(caregiver.getId());
-            System.out.println("cargiver called");
-        }
-        System.out.println("케어기버 result~");
-        System.out.println(result);
-
-        Elders elder = eldersService.findElderByNameAndPassword(name, password);
-        if (elder != null && result == null) {
-            result = eldersService.getElderDetails(elder.getId());
-            System.out.println("elder called");
-        }
-        System.out.println("노인 result~");
-        System.out.println(result);
-
-        Parents parent = parentsService.findParentByNameAndPassword(name, password);
-        if (parent != null && result == null) {
-            result = parentsService.getParentDetails(parent.getId());
-            System.out.println("parent called");
-        }
-        System.out.println("부모 result~");
-        System.out.println(result);
-
-        System.out.println("total result~");
-        System.out.println(result);
-        return result;
     }
 }
