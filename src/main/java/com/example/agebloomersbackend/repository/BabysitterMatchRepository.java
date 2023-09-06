@@ -16,4 +16,9 @@ public interface BabysitterMatchRepository extends JpaRepository<BabysitterMatch
 
     @Query("SELECT bm.babysitter.id FROM BabysitterMatch bm WHERE bm.parent.id = :parentId")
     Long findBabysitterIdsByParentId(@Param("parentId") Long parentId);
+
+    @Query("SELECT bm.parent.id FROM BabysitterMatch bm WHERE bm.babysitter.id = :babysitterId")
+    Long findParentIdsByBabysitterId(@Param("babysitterId") Long babysitterId);
+
+
 }

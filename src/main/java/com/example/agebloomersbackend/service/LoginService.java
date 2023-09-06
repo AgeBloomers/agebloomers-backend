@@ -29,23 +29,37 @@ public class LoginService {
         Babysitters babysitter = babysittersService.findBabysitterByNameAndPassword(name, password);
         if (babysitter != null && result == null) {
             result = babysittersService.getBabysitterDetails(babysitter.getId());
+            System.out.println("babysitter called");
         }
+        System.out.println("베이비시터 result~");
+        System.out.println(result);
 
         Caregivers caregiver = caregiversService.findCaregiverByNameAndPassword(name, password);
         if (caregiver != null && result == null) {
             result = caregiversService.getCaregiverDetails(caregiver.getId());
+            System.out.println("cargiver called");
         }
+        System.out.println("케어기버 result~");
+        System.out.println(result);
 
         Elders elder = eldersService.findElderByNameAndPassword(name, password);
         if (elder != null && result == null) {
             result = eldersService.getElderDetails(elder.getId());
+            System.out.println("elder called");
         }
+        System.out.println("노인 result~");
+        System.out.println(result);
 
         Parents parent = parentsService.findParentByNameAndPassword(name, password);
         if (parent != null && result == null) {
             result = parentsService.getParentDetails(parent.getId());
+            System.out.println("parent called");
         }
+        System.out.println("부모 result~");
+        System.out.println(result);
 
+        System.out.println("total result~");
+        System.out.println(result);
         return result;
     }
 }

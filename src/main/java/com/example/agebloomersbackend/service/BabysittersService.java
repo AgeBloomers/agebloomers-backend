@@ -2,8 +2,10 @@ package com.example.agebloomersbackend.service;
 
 import com.example.agebloomersbackend.domain.Babysitters;
 import com.example.agebloomersbackend.domain.Elders;
+import com.example.agebloomersbackend.domain.Parents;
 import com.example.agebloomersbackend.repository.BabysittersRepository;
 import com.example.agebloomersbackend.repository.BabysitterMatchRepository;
+import com.example.agebloomersbackend.repository.ParentsRepository;
 import com.example.agebloomersbackend.repository.RegisterDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,12 +18,14 @@ import java.util.stream.Collectors;
 @Service
 public class BabysittersService {
     private BabysittersRepository babysittersRepository;
+    private ParentsRepository parentsRepository;
     private BabysitterMatchRepository babysitterMatchRepository;
     private RegisterDetailsRepository registerDetailsRepository;
 
     @Autowired
-    public BabysittersService(BabysittersRepository babysittersRepository, BabysitterMatchRepository babysitterMatchRepository, RegisterDetailsRepository registerDetailsRepository) {
+    public BabysittersService(BabysittersRepository babysittersRepository, BabysitterMatchRepository babysitterMatchRepository, RegisterDetailsRepository registerDetailsRepository, ParentsRepository parentsRepository) {
         this.babysittersRepository = babysittersRepository;
+        this.parentsRepository = parentsRepository;
         this.babysitterMatchRepository = babysitterMatchRepository;
         this.registerDetailsRepository = registerDetailsRepository;
     }
@@ -45,16 +49,38 @@ public class BabysittersService {
     }
 
     public Object getBabysitterDetails(Long babysitterId) {
+        // 본인
         Babysitters babysitters = babysittersRepository.findById(babysitterId).orElse(null);
-        if (babysitters == null) {
-            return null;
-        }
+        if (babysitters == null)    return null;
 
-        List<Object[]> registerDetails = registerDetailsRepository.findByBabysitterId(babysitterId);
+        List<Object[]> registerDetails_babysitters = registerDetailsRepository.findByBabysitterId(babysitterId);
 
+        Map<String, Object> selfResult = new HashMap<>();
+        selfResult.put("babysitters", babysitters);
+        selfResult.put("registerDetails_babysitters", registerDetails_babysitters);
+        System.out.println(babysitterId);
+        System.out.println(selfResult);
+
+        // 매칭된 상대방 찾기
+        Long parentId = babysitterMatchRepository.findParentIdsByBabysitterId(babysitterId);
+
+        // 상대방
+        Parents parents = parentsRepository.findById(parentId).orElse(null);
+        if (parentId == null) return null;
+
+        List<Object[]> registerDetails_parents = registerDetailsRepository.findByParentId(parentId);
+
+        Map<String, Object> othersResult = new HashMap<>();
+        othersResult.put("parents", parents);
+        othersResult.put("registerDetails_parents", registerDetails_parents);
+        System.out.println(parentId);
+        System.out.println(othersResult);
+
+        // selfResult와 othersResult 합침
         Map<String, Object> result = new HashMap<>();
-        result.put("babysitters", babysitters);
-        result.put("registerDetails", registerDetails);
+        result.putAll(selfResult);
+        result.putAll(othersResult);
+
 
         return result;
     }
