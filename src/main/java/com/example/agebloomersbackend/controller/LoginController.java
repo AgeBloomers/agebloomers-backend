@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://43.201.76.22:8080")
 public class LoginController {
     private final LoginService loginService;
 
