@@ -26,6 +26,8 @@ public class LoginService {
     public Object login(String name, String password) {
         Object result = null;
 
+        System.out.println("name : " + name + ", ps : " + password);
+
         Babysitters babysitter = babysittersService.findBabysitterByNameAndPassword(name, password);
         if (babysitter != null && result == null) {
             result = babysittersService.getBabysitterDetails(babysitter.getId());
