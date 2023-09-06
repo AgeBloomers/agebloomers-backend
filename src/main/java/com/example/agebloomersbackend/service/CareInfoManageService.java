@@ -2,9 +2,7 @@ package com.example.agebloomersbackend.service;
 
 import com.example.agebloomersbackend.domain.*;
 import com.example.agebloomersbackend.repository.*;
-import jakarta.validation.constraints.Null;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,7 +29,7 @@ public class CareInfoManageService {
     }
 
     // 등록
-    public List<String> uploadCareInfo(String type, CareInfoManage careInfoManage) {
+    public String uploadCareInfo(String type, CareInfoManage careInfoManage) {
         switch (type) {
             case "Babysitters":
                 Babysitters newbabysitters = new Babysitters();
@@ -52,7 +50,8 @@ public class CareInfoManageService {
                 newBDetails.setStartTime(careInfoManage.getStartTime());
                 newBDetails.setEndTime(careInfoManage.getEndTime());
                 registerDetailsRepository.save(newBDetails);
-                break;
+                return type;
+//                break;
 
             case "Caregivers":
                 Caregivers newcaregivers = new Caregivers();
@@ -73,7 +72,7 @@ public class CareInfoManageService {
                 newCDetails.setStartTime(careInfoManage.getStartTime());
                 newCDetails.setEndTime(careInfoManage.getEndTime());
                 registerDetailsRepository.save(newCDetails);
-                break;
+                return type;
 
             case "Parents":
                 Parents newparents = new Parents();
@@ -94,7 +93,7 @@ public class CareInfoManageService {
                 newPDetails.setStartTime(careInfoManage.getStartTime());
                 newPDetails.setEndTime(careInfoManage.getEndTime());
                 registerDetailsRepository.save(newPDetails);
-                break;
+                return type;
 
             case "Elders":
                 Elders newelders = new Elders();
@@ -115,12 +114,11 @@ public class CareInfoManageService {
                 newEDetails.setStartTime(careInfoManage.getStartTime());
                 newEDetails.setEndTime(careInfoManage.getEndTime());
                 registerDetailsRepository.save(newEDetails);
-                break;
+                return type;
 
             default:
-                return List.of();
+                return null;
         }
-        return List.of();
     }
 
     // 삭제

@@ -26,15 +26,16 @@ public class CareInfoManageController {
     // 등록
     @PostMapping("/upload/{type}")
     @Operation(summary = "자신 정보 등록 API")
-    public ResponseEntity<String> updateCareInfo(
+    public String updateCareInfo(
             @PathVariable String type,
             @RequestBody CareInfoManage careInfoManage
     ) {
         try {
             careInfoManageService.uploadCareInfo(type, careInfoManage);
-            return new ResponseEntity<>("정보 등록 성공", HttpStatus.OK);
+            return type;
+//            return new ResponseEntity<>("정보 등록 성공", HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("정보 등록 오류", HttpStatus.INTERNAL_SERVER_ERROR);
+            return "정보 등록 오류";
         }
     }
 
