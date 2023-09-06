@@ -54,11 +54,11 @@ public class CaregiversService {
         Caregivers caregivers = caregiversRepository.findById(caregiverId).orElse(null);
         if (caregivers == null)     return null;
 
-        List<Object[]> registerDetails = registerDetailsRepository.findByCaregiverId(caregiverId);
+        List<Object[]> registerDetails_caregivers = registerDetailsRepository.findByCaregiverId(caregiverId);
 
         Map<String, Object> selfResult = new HashMap<>();
         selfResult.put("caregivers", caregivers);
-        selfResult.put("registerDetails", registerDetails);
+        selfResult.put("registerDetails_caregivers", registerDetails_caregivers);
         System.out.println(caregiverId);
         System.out.println(selfResult);
 
