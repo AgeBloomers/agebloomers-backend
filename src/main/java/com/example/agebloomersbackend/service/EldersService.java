@@ -54,32 +54,31 @@ public class EldersService {
 
         List<Object[]> registerDetails_elders = registerDetailsRepository.findByElderId(elderId);
 
-        Map<String, Object> selfResult = new HashMap<>();
-        selfResult.put("elders", elders);
-        selfResult.put("registerDetails_elders", registerDetails_elders);
+        Map<String, Object> result = new HashMap<>();
+        result.put("elders", elders);
+        result.put("registerDetails_elders", registerDetails_elders);
         System.out.println(elderId);
-        System.out.println(selfResult);
+        System.out.println(result);
 
         // 매칭된 상대방 찾기
         Long caregiverId = caregiverMatchRepository.findCaregiverIdsByElderId(elderId);
 
-        // 상대방
-        Caregivers caregivers = caregiversRepository.findById(caregiverId).orElse(null);
-        if (caregiverId == null) return null;
+        if (caregiverId != null) {
+            // 상대방
+            Caregivers caregivers = caregiversRepository.findById(caregiverId).orElse(null);
+            if (caregiverId == null) return null;
 
-        List<Object[]> registerDetails_caregivers = registerDetailsRepository.findByCaregiverId(caregiverId);
+            List<Object[]> registerDetails_caregivers = registerDetailsRepository.findByCaregiverId(caregiverId);
 
-        Map<String, Object> othersResult = new HashMap<>();
-        selfResult.put("caregivers", caregivers);
-        selfResult.put("registerDetails_caregivers", registerDetails_caregivers);
-        System.out.println(caregiverId);
-        System.out.println(selfResult);
+            Map<String, Object> othersResult = new HashMap<>();
+            othersResult.put("caregivers", caregivers);
+            othersResult.put("registerDetails_caregivers", registerDetails_caregivers);
+            System.out.println(caregiverId);
 
-        // selfResult와 othersResult 합침
-        Map<String, Object> result = new HashMap<>();
-        result.putAll(selfResult);
-        result.putAll(othersResult);
+            // selfResult와 othersResult 합침
+            result.putAll(othersResult);
 
+        }
         return result;
     }
 }

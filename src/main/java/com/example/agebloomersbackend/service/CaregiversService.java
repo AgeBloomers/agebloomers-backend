@@ -56,31 +56,31 @@ public class CaregiversService {
 
         List<Object[]> registerDetails_caregivers = registerDetailsRepository.findByCaregiverId(caregiverId);
 
-        Map<String, Object> selfResult = new HashMap<>();
-        selfResult.put("caregivers", caregivers);
-        selfResult.put("registerDetails_caregivers", registerDetails_caregivers);
+        Map<String, Object> result = new HashMap<>();
+        result.put("caregivers", caregivers);
+        result.put("registerDetails_caregivers", registerDetails_caregivers);
         System.out.println(caregiverId);
-        System.out.println(selfResult);
+        System.out.println(result);
 
         // 매칭된 상대방 찾기
         Long elderId = caregiverMatchRepository.findElderIdsByCaregiverId(caregiverId);
 
-        // 상대방
-        Elders elders = eldersRepository.findById(elderId).orElse(null);
-        if (elderId == null) return null;
+        if (elderId != null) {
+            // 상대방
+            Elders elders = eldersRepository.findById(elderId).orElse(null);
+            if (elderId == null) return null;
 
-        List<Object[]> registerDetails_elders = registerDetailsRepository.findByElderId(elderId);
+            List<Object[]> registerDetails_elders = registerDetailsRepository.findByElderId(elderId);
 
-        Map<String, Object> othersResult = new HashMap<>();
-        othersResult.put("elders", elders);
-        othersResult.put("registerDetails_elders", registerDetails_elders);
-        System.out.println(elderId);
-        System.out.println(othersResult);
+            Map<String, Object> othersResult = new HashMap<>();
+            othersResult.put("elders", elders);
+            othersResult.put("registerDetails_elders", registerDetails_elders);
+            System.out.println(elderId);
 
-        // selfResult와 othersResult 합침
-        Map<String, Object> result = new HashMap<>();
-        result.putAll(selfResult);
-        result.putAll(othersResult);
+            // selfResult와 othersResult 합침
+            result.putAll(othersResult);
+
+        }
 
         return result;
     }
