@@ -30,6 +30,7 @@ public class RegisterDetailsController {
             @PathVariable Long id,
             @PathVariable String type
     ) {
+        System.out.println("특정 인물 정보 조회 완료");
         return registerDetailsService.getRegisterDetailsByIdAndType(id, type);
     }
 }
