@@ -127,18 +127,23 @@ public class CareInfoManageService {
             case "Babysitters":
                 Babysitters babysitters = babysittersRepository.findById(id).orElse(null);
                 babysittersRepository.delete(babysitters);
+                break;
             case "Caregivers":
                 Caregivers caregivers = caregiversRepository.findById(id).orElse(null);
                 caregiversRepository.delete(caregivers);
+                break;
             case "Elders":
                 Elders elders = eldersRepository.findById(id).orElse(null);
                 eldersRepository.delete(elders);
+                break;
             case "Parents":
                 Parents parents = parentsRepository.findById(id).orElse(null);
                 parentsRepository.delete(parents);
+                break;
             default:
                 return List.of();
         }
+        return List.of();
     }
 
     // 수정
