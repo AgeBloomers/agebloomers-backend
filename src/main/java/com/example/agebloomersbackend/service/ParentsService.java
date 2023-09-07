@@ -66,7 +66,7 @@ public class ParentsService {
         // 매칭된 상대방 찾기
         Long babysitterId = babysitterMatchRepository.findBabysitterIdsByParentId(parentId);
 
-        if (parentId != null) {
+        if (babysitterId != null) {
             // 상대방
             Babysitters babysitters = babysittersRepository.findById(babysitterId).orElse(null);
             if (babysitters == null) return null;
