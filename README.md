@@ -9,6 +9,25 @@
 - Build Version : Java 17
 - Devleop Tool : Intelli J
 - JDK : open-jdk:17
+
+>### Directory structure
+    src
+    ├── main
+    │   ├── Application
+    │   ├── controller
+    │   ├── domain
+    │   ├── repository
+    │   ├── service
+    │   └── config
+    │         ├── JasyptConfig
+    │         ├── SwaggerConfig
+    │         └── WebConfig
+    ├── test
+    ├── build.gradle
+    ├── docker-compose.yml
+    ├── Dockerfile
+    ├── gradlew.bat
+    └── settings.gradle
   
 >### Dependencies
 ```java
