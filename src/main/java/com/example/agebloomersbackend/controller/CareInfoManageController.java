@@ -42,6 +42,7 @@ public class CareInfoManageController {
     }
 
     // 삭제
+    @Transactional
     @DeleteMapping("/delete/{type}/{id}")
     @Operation(summary = "자신 정보 삭제 API")
     public List<String> deleteCareInfoByIdAndType(
@@ -52,8 +53,9 @@ public class CareInfoManageController {
     }
 
     // 수정
+    @Transactional
     @PutMapping("/edit/{type}/{id}")
-    @Operation(summary = "자신 정보 수정 조회 API")
+    @Operation(summary = "자신 정보 수정 API")
     public ResponseEntity<String> updateCareInfo(
             @PathVariable Long id,
             @PathVariable String type,

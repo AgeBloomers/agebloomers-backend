@@ -5,6 +5,7 @@ import com.example.agebloomersbackend.domain.Babysitters;
 import com.example.agebloomersbackend.domain.Parents;
 import com.example.agebloomersbackend.service.BabysitterMatchService;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,7 @@ public class BabysitterMatchController {
         this.babysitterMatchService = babysitterMatchService;
     }
 
+    @Transactional
     @PostMapping("/babysitter_match")
     @Operation(summary = "베이비시터-부모 매칭 신청 API")
     public ResponseEntity<BabysitterMatch> createBabysitterMatch(
