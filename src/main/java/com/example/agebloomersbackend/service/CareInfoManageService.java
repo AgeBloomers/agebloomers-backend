@@ -147,7 +147,7 @@ public class CareInfoManageService {
     }
 
     // 수정
-    public List<String> updateCareInfo(Long id, String type, CareInfoManage careInfoManage) {
+    public String updateCareInfo(Long id, String type, CareInfoManage careInfoManage) {
         switch (type) {
             case "Babysitters":
                 Babysitters babysitters = babysittersRepository.findById(id).orElse(null);
@@ -159,7 +159,7 @@ public class CareInfoManageService {
                 babysitters.setEmail(careInfoManage.getEmail());
                 babysitters.setPassword(careInfoManage.getPassword());
                 babysittersRepository.save(babysitters);
-                break;
+                return "베이비시터 수정 성공";
             case "Caregivers":
                 Caregivers caregivers = caregiversRepository.findById(id).orElse(null);
                 caregivers.setName(careInfoManage.getName());
@@ -170,7 +170,7 @@ public class CareInfoManageService {
                 caregivers.setEmail(careInfoManage.getEmail());
                 caregivers.setPassword(careInfoManage.getPassword());
                 caregiversRepository.save(caregivers);
-                break;
+                return "요양보호사 수정 성공";
             case "Parents":
                 Parents parents = parentsRepository.findById(id).orElse(null);
                 parents.setName(careInfoManage.getName());
@@ -181,7 +181,7 @@ public class CareInfoManageService {
                 parents.setEmail(careInfoManage.getEmail());
                 parents.setPassword(careInfoManage.getPassword());
                 parentsRepository.save(parents);
-                break;
+                return "부모 수정 성공";
             case "Elders":
                 Elders elders = eldersRepository.findById(id).orElse(null);
                 elders.setName(careInfoManage.getName());
@@ -192,10 +192,9 @@ public class CareInfoManageService {
                 elders.setEmail(careInfoManage.getEmail());
                 elders.setPassword(careInfoManage.getPassword());
                 eldersRepository.save(elders);
-                break;
+                return "노인 수정 성공";
             default:
-                return List.of();
+                return null;
         }
-        return List.of();
     }
 }
