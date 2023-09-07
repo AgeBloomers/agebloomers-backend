@@ -31,7 +31,7 @@ public class CareInfoManageService {
     // 등록
     public String uploadCareInfo(String type, CareInfoManage careInfoManage) {
         switch (type) {
-            case "Babysitters":
+            case "babysitters":
                 Babysitters newbabysitters = new Babysitters();
                 RegisterDetails newBDetails = new RegisterDetails();
                 newbabysitters.setName(careInfoManage.getName());
@@ -53,7 +53,7 @@ public class CareInfoManageService {
                 return type;
 //                break;
 
-            case "Caregivers":
+            case "caregivers":
                 Caregivers newcaregivers = new Caregivers();
                 RegisterDetails newCDetails = new RegisterDetails();
                 newcaregivers.setName(careInfoManage.getName());
@@ -74,7 +74,7 @@ public class CareInfoManageService {
                 registerDetailsRepository.save(newCDetails);
                 return type;
 
-            case "Parents":
+            case "parents":
                 Parents newparents = new Parents();
                 RegisterDetails newPDetails = new RegisterDetails();
                 newparents.setName(careInfoManage.getName());
@@ -95,7 +95,7 @@ public class CareInfoManageService {
                 registerDetailsRepository.save(newPDetails);
                 return type;
 
-            case "Elders":
+            case "elders":
                 Elders newelders = new Elders();
                 RegisterDetails newEDetails = new RegisterDetails();
                 newelders.setName(careInfoManage.getName());
@@ -124,19 +124,19 @@ public class CareInfoManageService {
     // 삭제
     public List<String> deleteCareInfoByIdAndType(Long id, String type) {
         switch (type) {
-            case "Babysitters":
+            case "babysitters":
                 Babysitters babysitters = babysittersRepository.findById(id).orElse(null);
                 babysittersRepository.delete(babysitters);
                 break;
-            case "Caregivers":
+            case "caregivers":
                 Caregivers caregivers = caregiversRepository.findById(id).orElse(null);
                 caregiversRepository.delete(caregivers);
                 break;
-            case "Elders":
+            case "elders":
                 Elders elders = eldersRepository.findById(id).orElse(null);
                 eldersRepository.delete(elders);
                 break;
-            case "Parents":
+            case "parents":
                 Parents parents = parentsRepository.findById(id).orElse(null);
                 parentsRepository.delete(parents);
                 break;
@@ -149,7 +149,7 @@ public class CareInfoManageService {
     // 수정
     public String updateCareInfo(Long id, String type, CareInfoManage careInfoManage) {
         switch (type) {
-            case "Babysitters":
+            case "babysitters":
                 Babysitters babysitters = babysittersRepository.findById(id).orElse(null);
                 babysitters.setName(careInfoManage.getName());
                 babysitters.setAge(careInfoManage.getAge());
@@ -161,7 +161,7 @@ public class CareInfoManageService {
                 babysittersRepository.save(babysitters);
                 System.out.println("베이비시터 수정 성공");
                 break;
-            case "Caregivers":
+            case "caregivers":
                 Caregivers caregivers = caregiversRepository.findById(id).orElse(null);
                 caregivers.setName(careInfoManage.getName());
                 caregivers.setAge(careInfoManage.getAge());
@@ -173,7 +173,7 @@ public class CareInfoManageService {
                 caregiversRepository.save(caregivers);
                 System.out.println("요양보호사 수정 성공");
                 break;
-            case "Parents":
+            case "parents":
                 Parents parents = parentsRepository.findById(id).orElse(null);
                 parents.setName(careInfoManage.getName());
                 parents.setAge(careInfoManage.getAge());
@@ -185,7 +185,7 @@ public class CareInfoManageService {
                 parentsRepository.save(parents);
                 System.out.println("부모 수정 성공");
                 break;
-            case "Elders":
+            case "elders":
                 Elders elders = eldersRepository.findById(id).orElse(null);
                 elders.setName(careInfoManage.getName());
                 elders.setAge(careInfoManage.getAge());
