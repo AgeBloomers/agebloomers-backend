@@ -159,7 +159,8 @@ public class CareInfoManageService {
                 babysitters.setEmail(careInfoManage.getEmail());
                 babysitters.setPassword(careInfoManage.getPassword());
                 babysittersRepository.save(babysitters);
-                return "베이비시터 수정 성공";
+                System.out.println("베이비시터 수정 성공");
+                break;
             case "Caregivers":
                 Caregivers caregivers = caregiversRepository.findById(id).orElse(null);
                 caregivers.setName(careInfoManage.getName());
@@ -170,7 +171,8 @@ public class CareInfoManageService {
                 caregivers.setEmail(careInfoManage.getEmail());
                 caregivers.setPassword(careInfoManage.getPassword());
                 caregiversRepository.save(caregivers);
-                return "요양보호사 수정 성공";
+                System.out.println("요양보호사 수정 성공");
+                break;
             case "Parents":
                 Parents parents = parentsRepository.findById(id).orElse(null);
                 parents.setName(careInfoManage.getName());
@@ -181,7 +183,8 @@ public class CareInfoManageService {
                 parents.setEmail(careInfoManage.getEmail());
                 parents.setPassword(careInfoManage.getPassword());
                 parentsRepository.save(parents);
-                return "부모 수정 성공";
+                System.out.println("부모 수정 성공");
+                break;
             case "Elders":
                 Elders elders = eldersRepository.findById(id).orElse(null);
                 elders.setName(careInfoManage.getName());
@@ -192,9 +195,11 @@ public class CareInfoManageService {
                 elders.setEmail(careInfoManage.getEmail());
                 elders.setPassword(careInfoManage.getPassword());
                 eldersRepository.save(elders);
-                return "노인 수정 성공";
+                System.out.println("노인 수정 성공");
+                break;
             default:
                 return null;
         }
+        return null;
     }
 }
