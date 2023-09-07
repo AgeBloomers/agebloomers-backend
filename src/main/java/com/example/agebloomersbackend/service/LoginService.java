@@ -33,6 +33,7 @@ public class LoginService {
             if (babysitter != null && result == null) {
                 result = babysittersService.getBabysitterDetails(babysitter.getId());
                 System.out.println("babysitter called");
+                return "babysitters";
             }
             System.out.println("베이비시터 result~");
             System.out.println(result);
@@ -41,6 +42,7 @@ public class LoginService {
             if (caregiver != null && result == null) {
                 result = caregiversService.getCaregiverDetails(caregiver.getId());
                 System.out.println("cargiver called");
+                return "caregivers";
             }
             System.out.println("케어기버 result~");
             System.out.println(result);
@@ -49,6 +51,7 @@ public class LoginService {
             if (elder != null && result == null) {
                 result = eldersService.getElderDetails(elder.getId());
                 System.out.println("elder called");
+                return "elders";
             }
             System.out.println("노인 result~");
             System.out.println(result);
@@ -57,6 +60,7 @@ public class LoginService {
             if (parent != null && result == null) {
                 result = parentsService.getParentDetails(parent.getId());
                 System.out.println("parent called");
+                return "parents";
             }
             System.out.println("부모 result~");
             System.out.println(result);
