@@ -7,6 +7,9 @@ import com.example.agebloomersbackend.domain.Parents;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Service
 public class LoginService {
     private final BabysittersService babysittersService;
@@ -23,8 +26,10 @@ public class LoginService {
         this.parentsService = parentsService;
     }
 
-    public Object login(String name, String password) {
+    public Map<String, Object> login(String name, String password) {
         try {
+            Map<String, Object> resultMap = new HashMap<>();
+            String type = null;
             Object result = null;
 
             System.out.println("name : " + name + ", ps : " + password);
@@ -33,7 +38,7 @@ public class LoginService {
             if (babysitter != null && result == null) {
                 result = babysittersService.getBabysitterDetails(babysitter.getId());
                 System.out.println("babysitter called");
-                return "babysitters";
+                type = "babysitters";
             }
             System.out.println("베이비시터 result~");
             System.out.println(result);
@@ -42,7 +47,7 @@ public class LoginService {
             if (caregiver != null && result == null) {
                 result = caregiversService.getCaregiverDetails(caregiver.getId());
                 System.out.println("cargiver called");
-                return "caregivers" + result;
+                type = "caregivers";
             }
             System.out.println("케어기버 result~");
             System.out.println(result);
@@ -51,7 +56,7 @@ public class LoginService {
             if (elder != null && result == null) {
                 result = eldersService.getElderDetails(elder.getId());
                 System.out.println("elder called");
-                return "elders" + result;
+                type = "elders";
             }
             System.out.println("노인 result~");
             System.out.println(result);
@@ -60,19 +65,23 @@ public class LoginService {
             if (parent != null && result == null) {
                 result = parentsService.getParentDetails(parent.getId());
                 System.out.println("parent called");
-                return "parents" + result;
+                type = "parents";
             }
             System.out.println("부모 result~");
             System.out.println(result);
 
             System.out.println("total result~");
             System.out.println(result);
-//            return result;
+            String resultWithTypeName = result.toString() + type;
+
+            resultMap.put("type", type);
+            resultMap.put("result", result);
+
+            return resultMap;
         } catch (Exception e) {
             // 예외 발생 시 로그 출력
             e.printStackTrace();
             throw e; // 예외를 다시 던져서 처리되지 않은 예외로 전달
         }
-        return null;
     }
 }
