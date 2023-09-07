@@ -3,6 +3,7 @@ package com.example.agebloomersbackend.controller;
 import com.example.agebloomersbackend.domain.*;
 import com.example.agebloomersbackend.service.CareInfoManageService;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,7 @@ public class CareInfoManageController {
     }
 
     // 등록
+    @Transactional
     @PostMapping("/upload/{type}")
     @Operation(summary = "자신 정보 등록 API")
     public String updateCareInfo(
