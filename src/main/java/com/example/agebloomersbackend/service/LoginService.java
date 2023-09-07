@@ -42,7 +42,7 @@ public class LoginService {
             if (caregiver != null && result == null) {
                 result = caregiversService.getCaregiverDetails(caregiver.getId());
                 System.out.println("cargiver called");
-                return "caregivers";
+                return "caregivers" + result;
             }
             System.out.println("케어기버 result~");
             System.out.println(result);
@@ -51,7 +51,7 @@ public class LoginService {
             if (elder != null && result == null) {
                 result = eldersService.getElderDetails(elder.getId());
                 System.out.println("elder called");
-                return "elders";
+                return "elders" + result;
             }
             System.out.println("노인 result~");
             System.out.println(result);
@@ -60,14 +60,14 @@ public class LoginService {
             if (parent != null && result == null) {
                 result = parentsService.getParentDetails(parent.getId());
                 System.out.println("parent called");
-                return "parents";
+                return "parents" + result;
             }
             System.out.println("부모 result~");
             System.out.println(result);
 
             System.out.println("total result~");
             System.out.println(result);
-            return result;
+//            return result;
         } catch (Exception e) {
             // 예외 발생 시 로그 출력
             e.printStackTrace();
