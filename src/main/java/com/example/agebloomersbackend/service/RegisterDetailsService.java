@@ -18,13 +18,13 @@ public class RegisterDetailsService {
 
     public List<Object[]> getRegisterDetailsByIdAndType(Long id, String type) {
         switch (type) {
-            case "Babysitters":
+            case "babysitters":
                 return registerDetailsRepository.findByBabysitterId(id);
-            case "Caregivers":
+            case "caregivers":
                 return registerDetailsRepository.findByCaregiverId(id);
-            case "Elders":
+            case "elders":
                 return registerDetailsRepository.findByElderId(id);
-            case "Parents":
+            case "parents":
                 return registerDetailsRepository.findByParentId(id);
             default:
                 return List.of();
